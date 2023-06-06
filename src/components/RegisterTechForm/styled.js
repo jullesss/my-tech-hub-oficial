@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ModalWrapper = styled.div`
-  background-color: rgba(18, 18, 20, 0.5);
+  background-color: rgba(18, 18, 20, 0.8);
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -18,6 +18,11 @@ export const ModalWrapper = styled.div`
     width: 342px;
     height: 349px;
     background-color: var(--gray-3);
+  }
+
+  #modal-container {
+    box-shadow: 0px 0px 5px 0.3px rgba(111, 255, 87, 1);
+    height: 100%;
   }
 
   form {

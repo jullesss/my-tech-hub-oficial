@@ -7,8 +7,8 @@ import { InputItem } from "../Input/styled.js";
 import { EditBtns } from "./styled.js";
 
 export function EditTechForm() {
-  const { techName } = useContext(UserContext);
-  const { register, handleSubmit } = useForm();
+  /*   const { techName } = useContext(UserContext);
+   */ const { register, handleSubmit } = useForm();
 
   const {
     editStatusTech,
@@ -17,6 +17,7 @@ export function EditTechForm() {
     techId,
     removeTech,
     setTechName,
+    techName,
   } = useContext(TechContext);
 
   function submit(formData) {
@@ -32,34 +33,37 @@ export function EditTechForm() {
   return (
     <ModalWrapper>
       <section>
-        <div id="modal-header">
-          <p>Tecnologia Detalhes</p>
-          <img src="/close.svg" className="closeBtn" onClick={openModal} />
+        <div id="modal-container">
+          <div id="modal-header">
+            <p>Tecnologia Detalhes</p>
+            <img src="/close.svg" className="closeBtn" onClick={openModal} />
+          </div>
+          <form onSubmit={handleSubmit(submit)}>
+            <label htmlFor="title">Nome</label>
+            <InputItem
+              type="text"
+              placeholder={
+                `${techName}`.charAt().toUpperCase() + `${techName}`.slice(1)
+              }
+              disabled
+              bg={"#1f2224fa"}
+            />
+            <label htmlFor="status">Selecionar status</label>
+            <select {...register("status")}>
+              <option value="Iniciante">Iniciante</option>
+              <option value="Intermediário">Intermediário</option>
+              <option value="Avançado">Avançado</option>
+            </select>
+            <EditBtns>
+              <button id="save" type="submit">
+                Salvar Alterações
+              </button>
+              <button id="delete" onClick={() => removeTech(techId)}>
+                Excluir
+              </button>
+            </EditBtns>
+          </form>
         </div>
-        <form onSubmit={handleSubmit(submit)}>
-          <label htmlFor="title">Nome</label>
-          <InputItem
-            type="text"
-            placeholder="Não editável, apenas o status"
-            disabled
-            bg={"#292e33fd"}
-          />
-
-          <label htmlFor="status">Selecionar status</label>
-          <select {...register("status")}>
-            <option value="Iniciante">Iniciante</option>
-            <option value="Intermediário">Intermediário</option>
-            <option value="Avançado">Avançado</option>
-          </select>
-          <EditBtns>
-            <button id="save" type="submit">
-              Salvar Alterações
-            </button>
-            <button id="delete" onClick={() => removeTech(techId)}>
-              Excluir
-            </button>
-          </EditBtns>
-        </form>
       </section>
     </ModalWrapper>
   );

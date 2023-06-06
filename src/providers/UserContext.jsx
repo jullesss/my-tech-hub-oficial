@@ -8,6 +8,7 @@ export const UserContext = createContext({});
 export function UserProvider({ children }) {
   const [user, setUser] = useState();
   const [techs, setTechs] = useState([]);
+  const [works, setWorks] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
@@ -40,28 +41,30 @@ export function UserProvider({ children }) {
   }
 
   useEffect(() => {
-    async function getUser() {
-      const token = localStorage.getItem("@kenzie-hub-token");
-      if (!token) {
-        setLoading(false);
-        setUser(undefined);
-        navigate("/");
-        return;
-      }
-      try {
-        api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        const response = await api.get("/profile");
-        setUser(response.data);
-        setTechs(response.data.techs);
-      } catch (err) {
-        console.log(err);
-        localStorage.removeItem("@kenzie-hub-token");
-      } finally {
-        setLoading(false);
-      }
-    }
     getUser();
   }, [techs]);
+
+  async function getUser() {
+    const token = localStorage.getItem("@kenzie-hub-token");
+    if (!token) {
+      setLoading(false);
+      setUser(undefined);
+      navigate("/");
+      return;
+    }
+    try {
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      const response = await api.get("/profile");
+      setUser(response.data);
+      setTechs(response.data.techs);
+      setWorks(response.data.works);
+    } catch (err) {
+      console.log(err);
+      localStorage.removeItem("@kenzie-hub-token");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <UserContext.Provider
@@ -73,6 +76,7 @@ export function UserProvider({ children }) {
         techs,
         loading,
         setLoading,
+        works,
       }}
     >
       {children}

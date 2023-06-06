@@ -18,30 +18,32 @@ export function RegisterTechForm() {
   return (
     <ModalWrapper>
       <section>
-        <div id="modal-header">
-          <p>Cadastrar Tecnologia</p>
-          <img
-            className="closeBtn"
-            src="/close.svg"
-            onClick={() => setAddTechModal(!addTechModal)}
-          />
-        </div>
+        <div id="modal-container">
+          <div id="modal-header">
+            <p>Cadastrar Tecnologia</p>
+            <img
+              className="closeBtn"
+              src="/close.svg"
+              onClick={() => setAddTechModal(!addTechModal)}
+            />
+          </div>
 
-        <form onSubmit={handleSubmit(submit)}>
-          <label htmlFor="title">Nome</label>
-          <InputItem
-            type="text"
-            placeholder="Ex.: Typescript"
-            {...register("title")}
-          />
-          <label htmlFor="status">Selecionar status</label>
-          <select {...register("status")}>
-            <option value="Iniciante">Iniciante</option>
-            <option value="Intermediário">Intermediário</option>
-            <option value="Avançado">Avançado</option>
-          </select>
-          <button type="submit">Cadastrar Tecnologia</button>
-        </form>
+          <form onSubmit={handleSubmit(submit)}>
+            <label htmlFor="title">Nome</label>
+            <InputItem
+              type="text"
+              placeholder="Ex.: Typescript"
+              {...register("title")}
+            />
+            <label htmlFor="status">Selecionar status</label>
+            <select {...register("status")}>
+              <option value="Iniciante">Iniciante</option>
+              <option value="Intermediário">Intermediário</option>
+              <option value="Avançado">Avançado</option>
+            </select>
+            <button type="submit">Cadastrar Tecnologia</button>
+          </form>
+        </div>
       </section>
     </ModalWrapper>
   );

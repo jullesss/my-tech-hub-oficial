@@ -33,9 +33,9 @@ Tecnologias e ferramentas:
 
 ## Como usar
 
-Para utilizar o My Tech Hub, é necessário acessar esse link: <a href="https://react-entrega-kenzie-hub-jullesss.vercel.app/">My Tech Hub</a>
+Para utilizar o My Tech Hub, é necessário acessar esse link: <a href="https://my-tech-hub-oficial.vercel.app/">My Tech Hub</a>
 
 Credenciais User mock (teste):
 Email: flor@mail.com
-Senha: 123456
+Senha: 1234Aa!!
 
